@@ -1,6 +1,11 @@
 package com.salex89.eVisitorClient;
 
-import com.sun.javafx.image.impl.ByteIndexed;
+import com.salex89.eVisitorClient.handlers.ContentResponseHandler;
+import com.salex89.eVisitorClient.handlers.CookieResponseHandler;
+import com.salex89.eVisitorClient.operations.GetTouristsOperation;
+import com.salex89.eVisitorClient.operations.LoginOperation;
+import com.salex89.eVisitorClient.operations.Operation;
+import com.salex89.eVisitorClient.operations.OperationNotSupported;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,15 +22,15 @@ public class CommandBuilder {
     public CommandExecutor buildCommand(JCommanderContainer container) {
         if (container.getOperation().contentEquals(LOGIN)) {
             String inputPayload = readFile(container.getInputFilePath());
-            Command loginCommand = new LoginCommand(inputPayload);
-            return new CommandExecutor(loginCommand, new CookieResponseHandler(container.getOutputFilePath()));
+            Operation loginOperation = new LoginOperation(inputPayload);
+            return new CommandExecutor(loginOperation, new CookieResponseHandler(container.getOutputFilePath()));
         }
         if (container.getOperation().contentEquals(GET_TOURISTS)) {
             String cookies = readFile(container.getCookieFile());
-            Command getTouristsCommand = new GetTouristsCommand(cookies);
-            return new CommandExecutor(getTouristsCommand, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation getTouristsOperation = new GetTouristsOperation(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
         }
-        throw new CallNotSupportedOperation(container.getOperation());
+        throw new OperationNotSupported(container.getOperation());
     }
 
     protected String readFile(String filePath) {

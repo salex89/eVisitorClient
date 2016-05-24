@@ -1,4 +1,4 @@
-package com.salex89.eVisitorClient;
+package com.salex89.eVisitorClient.operations;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
@@ -10,11 +10,11 @@ import java.io.IOException;
 /**
  * Created by aleksandar on 5/23/16.
  */
-public class GetTouristsCommand implements Command {
+public class GetTouristsOperation implements Operation {
     private final String cookies;
     private final String url = "https://www.evisitor.hr/testApi/Rest/Htz/Tourist/";
 
-    public GetTouristsCommand(String cookies) {
+    public GetTouristsOperation(String cookies) {
         this.cookies = cookies;
     }
 
@@ -27,7 +27,7 @@ public class GetTouristsCommand implements Command {
             int statusCode = httpResponse.getStatusLine().getStatusCode();
             return new ServerResponseImpl(content, cookies, statusCode);
         } catch (IOException e) {
-            throw new CommandException(e);
+            throw new OperationException(e);
         }
     }
 }

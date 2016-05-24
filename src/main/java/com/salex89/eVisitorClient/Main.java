@@ -2,6 +2,7 @@ package com.salex89.eVisitorClient;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.salex89.eVisitorClient.operations.OperationNotSupported;
 
 /**
  * Created by aleksandar on 5/23/16.
@@ -17,7 +18,7 @@ public class Main {
             executor.execute();
         } catch (ParameterException pe) {
             new JCommander(jct).usage();
-        } catch (CallNotSupportedOperation e) {
+        } catch (OperationNotSupported e) {
             System.out.println("Operation " + e.getOperation() + " not supported");
             System.exit(1);
         } catch (InputFileError e) {

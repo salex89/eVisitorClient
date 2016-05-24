@@ -1,4 +1,4 @@
-package com.salex89.eVisitorClient;
+package com.salex89.eVisitorClient.operations;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
@@ -12,12 +12,12 @@ import java.io.IOException;
 /**
  * Created by aleksandar on 5/23/16.
  */
-public class LoginCommand implements Command {
+public class LoginOperation implements Operation {
 
     private final String payload;
     private final String url = "https://www.evisitor.hr/testApi/Resources/AspNetFormsAuth/Authentication/Login";
 
-    public LoginCommand(String payload) {
+    public LoginOperation(String payload) {
         this.payload = payload;
     }
 
@@ -34,7 +34,7 @@ public class LoginCommand implements Command {
             String cookies = collapseCookieHeader(httpResponse.getHeaders("Set-Cookie"));
             return new ServerResponseImpl(content, cookies, statusCode);
         } catch (IOException e) {
-            throw new CommandException(e);
+            throw new OperationException(e);
         }
     }
 

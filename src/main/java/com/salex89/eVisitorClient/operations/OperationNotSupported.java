@@ -1,12 +1,12 @@
-package com.salex89.eVisitorClient;
+package com.salex89.eVisitorClient.operations;
 
 /**
  * Created by aleksandar on 5/23/16.
  */
-public class CallNotSupportedOperation extends RuntimeException {
+public class OperationNotSupported extends RuntimeException {
     private final String operation;
 
-    public CallNotSupportedOperation(String operation) {
+    public OperationNotSupported(String operation) {
         this.operation = operation;
     }
 

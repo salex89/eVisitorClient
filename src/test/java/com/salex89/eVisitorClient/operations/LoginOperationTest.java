@@ -1,4 +1,4 @@
-package com.salex89.eVisitorClient;
+package com.salex89.eVisitorClient.operations;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
@@ -9,10 +9,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by aleksandar on 5/23/16.
  */
-public class LoginCommandTest {
+public class LoginOperationTest {
     @Test
     public void collapseCookieHeader() throws Exception {
-        LoginCommand loginCommand = new LoginCommand("payload");
+        LoginOperation loginCommand = new LoginOperation("payload");
         Header[] headers = new Header[3];
         headers[0] = new BasicHeader("foo", "bar");
         headers[1] = new BasicHeader("baz", "earth");

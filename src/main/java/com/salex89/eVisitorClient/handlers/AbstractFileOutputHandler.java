@@ -1,4 +1,7 @@
-package com.salex89.eVisitorClient;
+package com.salex89.eVisitorClient.handlers;
+
+import com.salex89.eVisitorClient.OutputFileError;
+import com.salex89.eVisitorClient.operations.ServerResponse;
 
 import java.io.FileWriter;
 import java.io.IOException;
