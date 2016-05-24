@@ -2,17 +2,13 @@ package com.salex89.eVisitorClient;
 
 import com.salex89.eVisitorClient.handlers.ContentResponseHandler;
 import com.salex89.eVisitorClient.handlers.CookieResponseHandler;
-import com.salex89.eVisitorClient.operations.GetTouristsOperation;
-import com.salex89.eVisitorClient.operations.LoginOperation;
-import com.salex89.eVisitorClient.operations.Operation;
-import com.salex89.eVisitorClient.operations.OperationNotSupported;
+import com.salex89.eVisitorClient.operations.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static com.salex89.eVisitorClient.CommandStrings.GET_TOURISTS;
-import static com.salex89.eVisitorClient.CommandStrings.LOGIN;
+import static com.salex89.eVisitorClient.CommandStrings.*;
 
 /**
  * Created by aleksandar on 5/23/16.
@@ -24,8 +20,21 @@ public class CommandBuilder {
             String inputPayload = readFile(container.getInputFilePath());
             Operation loginOperation = new LoginOperation(inputPayload);
             return new CommandExecutor(loginOperation, new CookieResponseHandler(container.getOutputFilePath()));
-        }
-        if (container.getOperation().contentEquals(GET_TOURISTS)) {
+        } else if (container.getOperation().contentEquals(LOGOUT)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation logoutOperation = new LogoutOperation(cookies);
+            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(CHECKIN)) {
+            String inputPayload = readFile(container.getInputFilePath());
+            String cookies = readFile(container.getCookieFile());
+            Operation logoutOperation = new CheckInOperation(inputPayload, cookies);
+            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(CHECKOUT)) {
+            String inputPayload = readFile(container.getInputFilePath());
+            String cookies = readFile(container.getCookieFile());
+            Operation logoutOperation = new CheckOutOperation(inputPayload, cookies);
+            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(GET_TOURISTS)) {
             String cookies = readFile(container.getCookieFile());
             Operation getTouristsOperation = new GetTouristsOperation(cookies);
             return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));

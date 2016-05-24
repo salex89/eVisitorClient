@@ -11,6 +11,13 @@ public class CookieResponseHandler extends AbstractFileOutputHandler {
     }
 
     protected String responseToString(ServerResponse response) {
-        return response.getCookies();
+        StringBuilder builder = new StringBuilder();
+        if (response.getStatus() != 200) {
+            builder.append("ERROR");
+            builder.append('\n');
+            builder.append(response.getContents());
+        }
+        builder.append(response.getCookies());
+        return builder.toString();
     }
 }

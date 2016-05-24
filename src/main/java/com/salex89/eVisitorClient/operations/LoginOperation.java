@@ -27,7 +27,6 @@ public class LoginOperation implements Operation {
             response = Request.Post(url).
                     bodyString(payload, ContentType.APPLICATION_JSON)
                     .execute();
-
             HttpResponse httpResponse = response.returnResponse();
             String content = EntityUtils.toString(httpResponse.getEntity());
             int statusCode = httpResponse.getStatusLine().getStatusCode();
