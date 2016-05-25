@@ -10,10 +10,10 @@ import java.io.IOException;
 /**
  * Created by aleksandar on 5/24/16.
  */
-public abstract class AbstractGetOperation implements Operation {
+public abstract class GetOperation implements Operation {
     protected final String cookies;
 
-    public AbstractGetOperation(String cookies) {
+    public GetOperation(String cookies) {
         this.cookies = cookies;
     }
 

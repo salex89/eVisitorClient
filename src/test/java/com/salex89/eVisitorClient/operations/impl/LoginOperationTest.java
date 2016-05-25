@@ -1,4 +1,4 @@
-package com.salex89.eVisitorClient.operations;
+package com.salex89.eVisitorClient.operations.impl;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;

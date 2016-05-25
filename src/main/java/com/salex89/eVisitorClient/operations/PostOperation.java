@@ -11,11 +11,11 @@ import java.io.IOException;
 /**
  * Created by aleksandar on 5/24/16.
  */
-public abstract class AbstractPostOperation implements Operation {
+public abstract class PostOperation implements Operation {
     protected final String payload;
     protected final String cookies;
 
-    public AbstractPostOperation(String payload, String cookies) {
+    public PostOperation(String payload, String cookies) {
         this.payload = payload;
         this.cookies = cookies;
     }

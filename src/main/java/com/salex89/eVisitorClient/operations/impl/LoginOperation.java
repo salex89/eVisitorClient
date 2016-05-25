@@ -1,5 +1,9 @@
-package com.salex89.eVisitorClient.operations;
+package com.salex89.eVisitorClient.operations.impl;
 
+import com.salex89.eVisitorClient.operations.Operation;
+import com.salex89.eVisitorClient.operations.OperationException;
+import com.salex89.eVisitorClient.operations.ServerResponse;
+import com.salex89.eVisitorClient.operations.ServerResponseImpl;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;

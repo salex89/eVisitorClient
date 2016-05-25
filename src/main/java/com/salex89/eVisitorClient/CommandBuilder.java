@@ -2,7 +2,9 @@ package com.salex89.eVisitorClient;
 
 import com.salex89.eVisitorClient.handlers.ContentResponseHandler;
 import com.salex89.eVisitorClient.handlers.CookieResponseHandler;
-import com.salex89.eVisitorClient.operations.*;
+import com.salex89.eVisitorClient.operations.Operation;
+import com.salex89.eVisitorClient.operations.OperationNotSupported;
+import com.salex89.eVisitorClient.operations.impl.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -34,9 +36,30 @@ public class CommandBuilder {
             String cookies = readFile(container.getCookieFile());
             Operation logoutOperation = new CheckOutOperation(inputPayload, cookies);
             return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(CANCEL_CHECKIN)) {
+            String inputPayload = readFile(container.getInputFilePath());
+            String cookies = readFile(container.getCookieFile());
+            Operation logoutOperation = new CancelCheckInOperation(inputPayload, cookies);
+            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(GET_TOURISTS)) {
             String cookies = readFile(container.getCookieFile());
             Operation getTouristsOperation = new GetTouristsOperation(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(DOCUMENT_TYPE_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new DocumentTypesLookup(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(COUNTRY_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new CountryLookup(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(PAYMENT_CATEGORY_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new PaymentCategoryLookup(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(ARRIVAL_ORGANIZATION_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new ArrivalOrganizationLookup(cookies);
             return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
         }
         throw new OperationNotSupported(container.getOperation());
