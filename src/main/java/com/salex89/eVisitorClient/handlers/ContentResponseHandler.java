@@ -13,11 +13,13 @@ public class ContentResponseHandler extends AbstractFileOutputHandler {
     protected String responseToString(ServerResponse response) {
         StringBuilder builder = new StringBuilder();
         if (response.getStatus() == 200) {
-            builder.append("OK");
+            if (response.getContents().contentEquals("")) {
+                builder.append("OK");
+            }
         } else {
             builder.append("ERROR");
+            builder.append('\n');
         }
-        builder.append('\n');
         builder.append(response.getContents());
         return builder.toString();
     }
