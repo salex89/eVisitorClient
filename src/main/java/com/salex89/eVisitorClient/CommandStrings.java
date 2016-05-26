@@ -14,5 +14,6 @@ public class CommandStrings {
     public static final String COUNTRY_LOOKUP = "countryLookup";
     public static final String PAYMENT_CATEGORY_LOOKUP = "paymentCategoryLookup";
     public static final String ARRIVAL_ORGANIZATION_LOOKUP = "arrivalOrganizationLookup";
+    public static final String GUID = "guid";
 
 }

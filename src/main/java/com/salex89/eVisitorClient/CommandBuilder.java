@@ -61,6 +61,9 @@ public class CommandBuilder {
             String cookies = readFile(container.getCookieFile());
             Operation getTouristsOperation = new ArrivalOrganizationLookup(cookies);
             return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(GUID)) {
+            Operation getTouristsOperation = new CreateGuidOperation();
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
         }
         throw new OperationNotSupported(container.getOperation());
     }

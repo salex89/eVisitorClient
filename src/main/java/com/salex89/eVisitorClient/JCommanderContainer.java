@@ -19,7 +19,8 @@ public class JCommanderContainer {
                     DOCUMENT_TYPE_LOOKUP + "\n\t" +
                     COUNTRY_LOOKUP + "\n\t" +
                     PAYMENT_CATEGORY_LOOKUP + "\n\t" +
-                    ARRIVAL_ORGANIZATION_LOOKUP,
+                    ARRIVAL_ORGANIZATION_LOOKUP + "\n\t" +
+                    GUID,
             required = true,
             arity = 1
     )
