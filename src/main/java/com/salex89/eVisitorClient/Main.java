@@ -21,9 +21,9 @@ public class Main {
         JCommanderContainer jct = new JCommanderContainer();
         try {
             Properties properties = loadProperties();
-            new JCommander(jct, args);
             String resourceUrl = loadResourceUrl(properties);
             String authUrl = loadAuthUrl(properties);
+            new JCommander(jct, args);
             CommandBuilder builder = new CommandBuilder(resourceUrl, authUrl);
             CommandExecutor executor = builder.buildCommand(jct);
             executor.execute();
