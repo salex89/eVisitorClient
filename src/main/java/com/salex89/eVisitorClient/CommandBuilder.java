@@ -61,6 +61,14 @@ public class CommandBuilder {
             String cookies = readFile(container.getCookieFile());
             Operation getTouristsOperation = new ArrivalOrganizationLookup(cookies);
             return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(SETTLEMENT_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new SettlementLookup(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(BORDER_CROSSING_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation getTouristsOperation = new BorderCrossingLookup(cookies);
+            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(GUID)) {
             Operation getTouristsOperation = new CreateGuidOperation();
             return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));

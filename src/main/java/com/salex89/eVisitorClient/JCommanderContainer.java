@@ -20,6 +20,8 @@ public class JCommanderContainer {
                     COUNTRY_LOOKUP + "\n\t" +
                     PAYMENT_CATEGORY_LOOKUP + "\n\t" +
                     ARRIVAL_ORGANIZATION_LOOKUP + "\n\t" +
+                    SETTLEMENT_LOOKUP + "\n\t" +
+                    BORDER_CROSSING_LOOKUP + "\n\t" +
                     GUID,
             required = true,
             arity = 1
