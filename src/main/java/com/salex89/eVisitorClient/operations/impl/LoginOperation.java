@@ -19,16 +19,18 @@ import java.io.IOException;
 public class LoginOperation implements Operation {
 
     private final String payload;
-    private final String url = "https://www.evisitor.hr/testApi/Resources/AspNetFormsAuth/Authentication/Login";
+    private final String path = "Login";
+    private final String baseUrl;
 
-    public LoginOperation(String payload) {
+    public LoginOperation(String payload, String baseUrl) {
         this.payload = payload;
+        this.baseUrl = baseUrl;
     }
 
     public ServerResponse execute() {
         Response response;
         try {
-            response = Request.Post(url).
+            response = Request.Post(baseUrl + path).
                     bodyString(payload, ContentType.APPLICATION_JSON)
                     .execute();
             HttpResponse httpResponse = response.returnResponse();

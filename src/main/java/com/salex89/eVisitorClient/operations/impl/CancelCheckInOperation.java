@@ -6,11 +6,14 @@ import com.salex89.eVisitorClient.operations.PostOperation;
  * Created by aleksandar on 5/25/16.
  */
 public class CancelCheckInOperation extends PostOperation {
-    public CancelCheckInOperation(String payload, String cookies) {
-        super(payload, cookies);
+
+
+    public CancelCheckInOperation(String payload, String cookies, String baseUrl) {
+        super(payload, cookies, baseUrl);
     }
 
-    protected String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/CancelTouristCheckIn/";
+    public String path() {
+        return "Htz/CancelTouristCheckIn/";
     }
+
 }

@@ -7,12 +7,12 @@ import com.salex89.eVisitorClient.operations.PostOperation;
  */
 public class LogoutOperation extends PostOperation {
 
-    public LogoutOperation(String cookies) {
-        super("", cookies);
+    public LogoutOperation(String cookies, String baseUrl) {
+        super("", cookies, baseUrl);
 
     }
 
-    protected String url() {
-        return "https://www.evisitor.hr/testApi/Resources/AspNetFormsAuth/Authentication/Logout";
+    public String path() {
+        return "Logout";
     }
 }

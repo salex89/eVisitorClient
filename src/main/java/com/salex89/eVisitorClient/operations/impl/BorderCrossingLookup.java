@@ -7,11 +7,12 @@ import com.salex89.eVisitorClient.operations.GetOperation;
  */
 public class BorderCrossingLookup extends GetOperation {
 
-    public BorderCrossingLookup(String cookies) {
-        super(cookies);
+
+    public BorderCrossingLookup(String cookies, String baseUrl) {
+        super(cookies, baseUrl);
     }
 
-    public String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/BorderCrossingHRlookup/";
+    public String path() {
+        return "Htz/BorderCrossingHRlookup/";
     }
 }

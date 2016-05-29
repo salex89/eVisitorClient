@@ -6,11 +6,13 @@ import com.salex89.eVisitorClient.operations.GetOperation;
  * Created by aleksandar on 5/25/16.
  */
 public class DocumentTypesLookup extends GetOperation {
-    public DocumentTypesLookup(String cookies) {
-        super(cookies);
+
+
+    public DocumentTypesLookup(String cookies, String baseUrl) {
+        super(cookies, baseUrl);
     }
 
-    public String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/DocumentTtypeLookup/";
+    public String path() {
+        return "Htz/DocumentTtypeLookup/";
     }
 }

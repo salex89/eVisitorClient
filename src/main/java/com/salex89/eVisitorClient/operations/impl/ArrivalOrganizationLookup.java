@@ -6,11 +6,13 @@ import com.salex89.eVisitorClient.operations.GetOperation;
  * Created by aleksandar on 5/25/16.
  */
 public class ArrivalOrganizationLookup extends GetOperation {
-    public ArrivalOrganizationLookup(String cookies) {
-        super(cookies);
+
+
+    public ArrivalOrganizationLookup(String cookies, String baseUrl) {
+        super(cookies, baseUrl);
     }
 
-    public String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/ArrivalOrganisationLookup/";
+    public String path() {
+        return "Htz/ArrivalOrganisationLookup/";
     }
 }

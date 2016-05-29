@@ -6,11 +6,13 @@ import com.salex89.eVisitorClient.operations.GetOperation;
  * Created by aleksandar on 5/25/16.
  */
 public class CountryLookup extends GetOperation {
-    public CountryLookup(String cookies) {
-        super(cookies);
+
+
+    public CountryLookup(String cookies, String baseUrl) {
+        super(cookies, baseUrl);
     }
 
-    public String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/CountryLookup/";
+    public String path() {
+        return "Htz/CountryLookup/";
     }
 }

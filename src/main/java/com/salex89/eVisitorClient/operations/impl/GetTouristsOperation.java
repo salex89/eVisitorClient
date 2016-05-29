@@ -8,12 +8,13 @@ import com.salex89.eVisitorClient.operations.GetOperation;
  */
 public class GetTouristsOperation extends GetOperation {
 
-    public GetTouristsOperation(String cookies) {
-        super(cookies);
+
+    public GetTouristsOperation(String cookies, String baseUrl) {
+        super(cookies, baseUrl);
     }
 
-    public String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/ListOfTourists/";
+    public String path() {
+        return "Htz/ListOfTourists/";
     }
 
 

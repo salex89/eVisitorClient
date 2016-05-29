@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginOperationTest {
     @Test
     public void collapseCookieHeader() throws Exception {
-        LoginOperation loginCommand = new LoginOperation("payload");
+        LoginOperation loginCommand = new LoginOperation("payload", "baseUrl");
         Header[] headers = new Header[3];
         headers[0] = new BasicHeader("foo", "bar");
         headers[1] = new BasicHeader("baz", "earth");

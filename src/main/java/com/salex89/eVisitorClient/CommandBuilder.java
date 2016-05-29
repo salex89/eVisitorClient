@@ -17,61 +17,70 @@ import static com.salex89.eVisitorClient.CommandStrings.*;
  */
 public class CommandBuilder {
 
+    private final String resourceUrl;
+    private final String authUrl;
+
+    public CommandBuilder(String resourceUrl, String authUrl) {
+        this.resourceUrl = resourceUrl;
+        this.authUrl = authUrl;
+    }
+
+
     public CommandExecutor buildCommand(JCommanderContainer container) {
         if (container.getOperation().contentEquals(LOGIN)) {
             String inputPayload = readFile(container.getInputFilePath());
-            Operation loginOperation = new LoginOperation(inputPayload);
+            Operation loginOperation = new LoginOperation(inputPayload, authUrl);
             return new CommandExecutor(loginOperation, new CookieResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(LOGOUT)) {
             String cookies = readFile(container.getCookieFile());
-            Operation logoutOperation = new LogoutOperation(cookies);
+            Operation logoutOperation = new LogoutOperation(cookies, authUrl);
             return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(CHECKIN)) {
             String inputPayload = readFile(container.getInputFilePath());
             String cookies = readFile(container.getCookieFile());
-            Operation logoutOperation = new CheckInOperation(inputPayload, cookies);
-            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new CheckInOperation(inputPayload, cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(CHECKOUT)) {
             String inputPayload = readFile(container.getInputFilePath());
             String cookies = readFile(container.getCookieFile());
-            Operation logoutOperation = new CheckOutOperation(inputPayload, cookies);
-            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new CheckOutOperation(inputPayload, cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(CANCEL_CHECKIN)) {
             String inputPayload = readFile(container.getInputFilePath());
             String cookies = readFile(container.getCookieFile());
-            Operation logoutOperation = new CancelCheckInOperation(inputPayload, cookies);
-            return new CommandExecutor(logoutOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new CancelCheckInOperation(inputPayload, cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(GET_TOURISTS)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new GetTouristsOperation(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new GetTouristsOperation(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(DOCUMENT_TYPE_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new DocumentTypesLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new DocumentTypesLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(COUNTRY_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new CountryLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new CountryLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(PAYMENT_CATEGORY_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new PaymentCategoryLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new PaymentCategoryLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(ARRIVAL_ORGANIZATION_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new ArrivalOrganizationLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new ArrivalOrganizationLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(SETTLEMENT_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new SettlementLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new SettlementLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(BORDER_CROSSING_LOOKUP)) {
             String cookies = readFile(container.getCookieFile());
-            Operation getTouristsOperation = new BorderCrossingLookup(cookies);
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new BorderCrossingLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(GUID)) {
-            Operation getTouristsOperation = new CreateGuidOperation();
-            return new CommandExecutor(getTouristsOperation, new ContentResponseHandler(container.getOutputFilePath()));
+            Operation operation = new CreateGuidOperation();
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         }
         throw new OperationNotSupported(container.getOperation());
     }

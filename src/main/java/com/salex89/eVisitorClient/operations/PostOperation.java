@@ -11,13 +11,12 @@ import java.io.IOException;
 /**
  * Created by aleksandar on 5/24/16.
  */
-public abstract class PostOperation implements Operation {
+public abstract class PostOperation extends AbstractOperation {
     protected final String payload;
-    protected final String cookies;
 
-    public PostOperation(String payload, String cookies) {
+    public PostOperation(String payload, String cookies, String baseUrl) {
+        super(cookies, baseUrl);
         this.payload = payload;
-        this.cookies = cookies;
     }
 
     public ServerResponse execute() {
@@ -34,7 +33,5 @@ public abstract class PostOperation implements Operation {
             throw new OperationException(e);
         }
     }
-
-    protected abstract String url();
 
 }

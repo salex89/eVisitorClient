@@ -28,8 +28,8 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
+
 
     <build>
         <plugins>
@@ -45,7 +45,8 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.salex89.eVisitorClient.Main</mainClass>
                                 </transformer>
                             </transformers>

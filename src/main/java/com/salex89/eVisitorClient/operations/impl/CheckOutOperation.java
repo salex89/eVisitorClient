@@ -7,11 +7,12 @@ import com.salex89.eVisitorClient.operations.PostOperation;
  */
 public class CheckOutOperation extends PostOperation {
 
-    public CheckOutOperation(String payload, String cookies) {
-        super(payload, cookies);
+
+    public CheckOutOperation(String payload, String cookies, String baseUrl) {
+        super(payload, cookies, baseUrl);
     }
 
-    protected String url() {
-        return "https://www.evisitor.hr/testApi/Rest/Htz/CheckOutTourist/";
+    public String path() {
+        return "Htz/CheckOutTourist/";
     }
 }
