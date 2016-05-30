@@ -78,6 +78,23 @@ public class CommandBuilder {
             String cookies = readFile(container.getCookieFile());
             Operation operation = new BorderCrossingLookup(cookies, resourceUrl);
             return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(OFFERED_SERVICE_TYPE_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation operation = new OfferedServiceTypeLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(VISA_TYPE_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation operation = new VisaTypeLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(READY_FOR_CHECKOUT_LOOKUP)) {
+            String cookies = readFile(container.getCookieFile());
+            Operation operation = new ReadyForCheckoutLookup(cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
+        } else if (container.getOperation().contentEquals(CREATE_MI_DOCUMENT)) {
+            String inputPayload = readFile(container.getInputFilePath());
+            String cookies = readFile(container.getCookieFile());
+            Operation operation = new CreateMIDocumentOperation(inputPayload, cookies, resourceUrl);
+            return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));
         } else if (container.getOperation().contentEquals(GUID)) {
             Operation operation = new CreateGuidOperation();
             return new CommandExecutor(operation, new ContentResponseHandler(container.getOutputFilePath()));

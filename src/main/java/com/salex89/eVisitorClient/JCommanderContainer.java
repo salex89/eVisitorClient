@@ -22,6 +22,10 @@ public class JCommanderContainer {
                     ARRIVAL_ORGANIZATION_LOOKUP + "\n\t" +
                     SETTLEMENT_LOOKUP + "\n\t" +
                     BORDER_CROSSING_LOOKUP + "\n\t" +
+                    OFFERED_SERVICE_TYPE_LOOKUP + "\n\t" +
+                    VISA_TYPE_LOOKUP + "\n\t" +
+                    CREATE_MI_DOCUMENT + "\n\t" +
+                    READY_FOR_CHECKOUT_LOOKUP + "\n\t" +
                     GUID,
             required = true,
             arity = 1

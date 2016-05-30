@@ -16,6 +16,10 @@ public class CommandStrings {
     public static final String ARRIVAL_ORGANIZATION_LOOKUP = "arrivalOrganizationLookup";
     public static final String SETTLEMENT_LOOKUP = "settlementLookup";
     public static final String BORDER_CROSSING_LOOKUP = "borderCrossingLookup";
+    public static final String OFFERED_SERVICE_TYPE_LOOKUP = "offeredServiceTypeLookup";
+    public static final String VISA_TYPE_LOOKUP = "visaTypeLookup";
+    public static final String CREATE_MI_DOCUMENT = "createMIDocument";
+    public static final String READY_FOR_CHECKOUT_LOOKUP = "readyForCheckoutLookup";
     public static final String GUID = "guid";
 
 }
